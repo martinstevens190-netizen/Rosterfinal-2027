@@ -2227,6 +2227,30 @@ function attemptLogin(idf,pw){
   }
   return false;
 }
+function wwLoginSleep(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
+async function attemptLoginAfterCloudRefresh(idf,pw){
+  // Employee phones often start with a fresh Home Screen cache that only has the
+  // admin seed account. Pull the shared cloud state before rejecting staff login.
+  let res=attemptLogin(idf,pw);
+  if(res===true || res==='archived')return res;
+  if(location.protocol==='file:')return res;
+  try{
+    const btn=document.querySelector('[data-action="do-login"]');
+    if(btn){btn.disabled=true;btn.dataset.oldText=btn.textContent||'';btn.textContent='Checking staff details…';}
+    for(let i=0;i<4;i++){
+      try{await pullCloudSync();}catch(e){}
+      await wwLoginSleep(i===0?450:700);
+      res=attemptLogin(idf,pw);
+      if(res===true || res==='archived')break;
+      if(findLoginUser(idf))break;
+    }
+    res=attemptLogin(idf,pw);
+    if(btn){btn.disabled=false;btn.textContent=btn.dataset.oldText||'Sign in';delete btn.dataset.oldText;}
+  }catch(e){
+    try{const btn=document.querySelector('[data-action="do-login"]');if(btn){btn.disabled=false;btn.textContent=btn.dataset.oldText||'Sign in';delete btn.dataset.oldText;}}catch(_){}
+  }
+  return res;
+}
 function logout(){state.sessionUserId=null;save();render();}
 
 function appLink(){return (location.origin&&location.origin!=='null')?location.origin:location.href.split('#')[0];}
@@ -5229,7 +5253,7 @@ function renderModal(){
 
 let draftEmp=null; // for shift modal staff selection
 let groupDraft=null; // for new group member selection
-document.addEventListener('click',e=>{
+document.addEventListener('click',async e=>{
   const el=e.target.closest('[data-action]');if(!el)return;
   const a=el.dataset.action;const u=me();
   wwHaptic(a);  // native-style tap feedback
@@ -5247,15 +5271,18 @@ document.addEventListener('click',e=>{
       const id=(idEl?.value||'').trim();
       if(!id){er.textContent='Type your mobile number or email first, then tap this button.';er.classList.add('show');idEl?.focus();break;}
       if(pwEl)pwEl.value='staff123';
-      const res=attemptLogin(id,'staff123');
+      if(er){er.textContent='';er.classList.remove('show');}
+      const res=await attemptLoginAfterCloudRefresh(id,'staff123');
       if(res===true){autoRequestPhoneNotificationsAfterLogin();toast('Signed in. You can change your password in Profile.');render();}
-      else{er.textContent=res==='archived'?'This account is no longer active. Contact your admin.':'First-time login did not work. Ask admin to check your phone/email and password.';er.classList.add('show');}
+      else{er.textContent=res==='archived'?'This account is no longer active. Contact your admin.':'First-time login did not work. The app checked the cloud, but could not match that mobile/email with staff123.';er.classList.add('show');}
       break;}
     case 'do-login':{
-      const id=document.getElementById('loginId').value, pw=document.getElementById('loginPw').value;
-      const res=attemptLogin(id,pw);
+      const id=(document.getElementById('loginId')?.value||'').trim(), pw=document.getElementById('loginPw')?.value||'';
+      const er=document.getElementById('loginErr');
+      if(er){er.textContent='';er.classList.remove('show');}
+      const res=await attemptLoginAfterCloudRefresh(id,pw);
       if(res===true){autoRequestPhoneNotificationsAfterLogin();setTimeout(pullCloudSync,80);render();}
-      else{const er=document.getElementById('loginErr');er.textContent=res==='archived'?'This account is no longer active. Contact your admin.':'Incorrect mobile/email or password. New staff can use staff123 first.';er.classList.add('show');}
+      else{const er=document.getElementById('loginErr');er.textContent=res==='archived'?'This account is no longer active. Contact your admin.':'Incorrect mobile/email or password. If this is an employee login, make sure the app is online and use the mobile/email saved under their staff profile.';er.classList.add('show');}
       break;}
     case 'logout': logout(); break;
 

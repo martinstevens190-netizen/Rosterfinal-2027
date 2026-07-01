@@ -1,0 +1,50 @@
+EarthRoster V219 Firebase Notifications Setup
+============================================
+
+This version includes your Firebase web app config and VAPID public key:
+Project ID: earthroster-bba1f
+
+IMPORTANT
+---------
+For closed/inactive phone notifications, the app must have a server credential that is allowed to send Firebase Cloud Messaging notifications.
+The web config and VAPID key alone can register the phone, but they cannot send notifications by themselves.
+
+You need to add this Netlify environment variable:
+
+FIREBASE_SERVICE_ACCOUNT_JSON
+
+How to create it:
+1. Firebase Console -> Project settings -> Service accounts.
+2. Click "Generate new private key".
+3. Download the JSON file to your computer.
+4. Open Netlify -> your site -> Site configuration -> Environment variables.
+5. Add a new variable:
+   Key: FIREBASE_SERVICE_ACCOUNT_JSON
+   Value: paste the whole JSON content from the downloaded private key file.
+6. Redeploy the site.
+
+Deploy method:
+- Do NOT rely on a simple static preview.
+- Use Netlify Git deploy or Netlify CLI deploy so the netlify/functions folder is deployed.
+- After deploy, this URL should NOT show 404:
+  https://YOUR-REAL-SITE.netlify.app/.netlify/functions/push-status
+
+Phone setup:
+1. Open the live site in Safari on iPhone.
+2. Share -> Add to Home Screen.
+3. Open the app from the Home Screen icon.
+4. Log in.
+5. Go to Notifications.
+6. Tap Enable inactive push.
+7. Tap Check status.
+8. Tap Test inactive push.
+
+Ready status should show server devices 1 or more. The function push-status also returns firebaseDevices and firebaseConfigured.
+
+Files added/updated:
+- firebase-push.js
+- netlify/functions/fcmShared.js
+- netlify/functions/fcm-subscribe.js
+- netlify/functions/pushShared.js updated to prefer Firebase FCM and avoid duplicate Web Push banners
+- netlify/functions/push-status.js updated to show Firebase token devices
+

@@ -1,12 +1,13 @@
-Westwonders/EarthRoster v217 — general inactive phone notifications + duplicate reminder fix.
+EarthRoster / Westwondersandco V219 Final Firebase Notification Build
 
-Changes made only in the notification/login area:
-- General inactive phone push now covers messages, roster updates, shift requests/responses, posts, comments, documents, timesheets and reminders.
-- Shift reminders are scheduled server-side for inactive app use.
-- Morning and night shift reminder times can be set manually.
-- Duplicate push protection added at the server, service worker and alert level.
-- Local shift reminder banners removed so users do not receive both local and server banners for the same reminder.
-- V216 responsive login screen fix is preserved.
+This build uses Firebase Cloud Messaging for inactive/closed-app phone notifications and keeps the existing app design/features intact.
 
+Before phone notifications can work when the app is closed:
+1. Deploy with Netlify Functions active, preferably through Git deploy or Netlify CLI.
+2. Add FIREBASE_SERVICE_ACCOUNT_JSON in Netlify environment variables.
+3. Redeploy.
+4. Open the live site from the iPhone Home Screen app.
+5. Tap Enable inactive push in Notifications.
+6. Tap Test inactive push.
 
-V218 notification note: General OS phone notifications now use one path only: server Web Push via the service worker. In-app cloud alert pulls show toast/in-app records only, which prevents duplicate iPhone banners. Scheduled booking and shift reminder functions are also declared in netlify.toml for reliable Netlify detection.
+See FIREBASE_NETLIFY_SETUP.txt for beginner steps.
