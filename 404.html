@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16271a">
+<title>Westwondersandco</title>
+<style>
+  html,body{height:100%;margin:0}
+  body{display:grid;place-items:center;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(180deg,#122418,#0a1810);color:#e4ecdc;text-align:center;padding:24px}
+  .box{max-width:340px}
+  h1{font-size:20px;margin:0 0 8px}
+  p{opacity:.8;font-size:14px;margin:0 0 20px}
+  a{display:inline-block;background:#2f6b3e;color:#fff;text-decoration:none;font-weight:700;
+    padding:12px 22px;border-radius:12px}
+
+
+/* FINAL FIX: remove old thick green bottom spacer layer above the circular menu */
+@media (max-width:1023px){
+  html, body{background:var(--bg)!important;}
+  body::before{display:none!important;content:none!important;height:0!important;background:transparent!important;}
+  .app-shell::before,.app-shell::after,.content::before,.content::after{display:none!important;content:none!important;}
+  .content{padding-bottom:96px!important;}
+  body.chat-thread-open .content{padding-bottom:0!important;}
+  .mobile-nav{
+    position:fixed!important;
+    left:18px!important;
+    right:18px!important;
+    bottom:calc(8px + env(safe-area-inset-bottom,0px))!important;
+    height:78px!important;
+    min-height:78px!important;
+    max-height:78px!important;
+    padding:8px 10px!important;
+    overflow:visible!important;
+    border-radius:26px!important;
+    background:linear-gradient(180deg,#fffefa 0%,#f7f5ee 100%)!important;
+    box-shadow:0 10px 26px rgba(16,35,20,.18)!important;
+  }
+  .mobile-nav::before,.mobile-nav::after{display:none!important;content:none!important;}
+  .mtab{height:62px!important;min-height:62px!important;max-height:62px!important;padding:3px 0!important;margin:0!important;transform:none!important;}
+  .mtab.active{transform:none!important;}
+}
+@media (max-width:380px){
+  .mobile-nav{left:12px!important;right:12px!important;height:74px!important;min-height:74px!important;max-height:74px!important;padding:7px 7px!important;bottom:calc(7px + env(safe-area-inset-bottom,0px))!important;}
+  .mtab{height:60px!important;min-height:60px!important;max-height:60px!important;}
+}
+
+</style>
+
+
+<!-- WW_V205_STAFFBAR_CARD_COLOURS_START -->
+<style id="ww-v205-staffbar-card-colours">
+/* V205 — requested only: staff bar colours now follow the roster card colour instead of staying green. Layout stays unchanged. */
+@media (max-width:1023px){
+  .roster-mobile .rcard:not(.is-rejected) .rc-meta .rc-staff-line,
+  .home-roster-list .rcard:not(.is-rejected) .rc-meta .rc-staff-line,
+  .rcard.is-emp:not(.is-rejected) .rc-meta .rc-staff-line{
+    background:linear-gradient(135deg,
+      color-mix(in srgb,var(--solid,#315f3a) 76%,#000 24%),
+      color-mix(in srgb,var(--deep,#173b23) 92%,#000 8%))!important;
+    border-color:color-mix(in srgb,var(--solid,#315f3a) 62%,rgba(255,255,255,.28))!important;
+  }
+  .roster-mobile .rcard:not(.is-rejected) .rc-meta .rc-staff-line .rc-staff-kicker,
+  .home-roster-list .rcard:not(.is-rejected) .rc-meta .rc-staff-line .rc-staff-kicker,
+  .rcard.is-emp:not(.is-rejected) .rc-meta .rc-staff-line .rc-staff-kicker{
+    background:linear-gradient(135deg,
+      color-mix(in srgb,var(--solid,#7fb56a) 58%,#fff 42%),
+      color-mix(in srgb,var(--solid,#7fb56a) 82%,#fff 18%))!important;
+    color:color-mix(in srgb,var(--deep,#10240f) 78%,#000 22%)!important;
+  }
+  .rgc:not(.is-rejected) .rgc-staff{
+    background:linear-gradient(135deg,
+      color-mix(in srgb,var(--accent,#315f3a) 76%,#000 24%),
+      color-mix(in srgb,var(--accent-deep,#173b23) 92%,#000 8%))!important;
+    border-color:color-mix(in srgb,var(--accent,#315f3a) 62%,rgba(255,255,255,.28))!important;
+  }
+  .rgc:not(.is-rejected) .rgc-staff-kicker{
+    background:linear-gradient(135deg,
+      color-mix(in srgb,var(--accent,#7fb56a) 58%,#fff 42%),
+      color-mix(in srgb,var(--accent,#7fb56a) 82%,#fff 18%))!important;
+    color:color-mix(in srgb,var(--accent-deep,#10240f) 78%,#000 22%)!important;
+  }
+}
+</style>
+<!-- WW_V205_STAFFBAR_CARD_COLOURS_END -->
+
+<!-- WW_V208_ADMIN_DAILY_HOURS_START -->
+<style id="ww-v208-admin-daily-hours">
+/* V208 — admin roster only: show daily total labour hours inside each day chip. Employee roster keeps the existing shift-count dots. */
+@media (max-width:1023px){
+  .rst-days-admin .rst-day{min-height:66px!important;justify-content:center!important;gap:3px!important;padding:7px 2px 6px!important;}
+  .rst-days-admin .rd-stats{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:3px!important;min-width:37px!important;height:17px!important;padding:0 5px!important;border-radius:999px!important;background:#f0e4d0!important;border:1px solid rgba(151,108,70,.16)!important;box-shadow:0 1px 2px rgba(80,48,24,.08)!important;line-height:1!important;white-space:nowrap!important;}
+  .rst-days-admin .rd-stats b{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:12px!important;height:12px!important;border-radius:999px!important;background:#b07a4a!important;color:#fff!important;font-size:8px!important;font-weight:900!important;line-height:12px!important;font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui)!important;}
+  .rst-days-admin .rd-stats em{font-style:normal!important;color:#536251!important;font-size:8.5px!important;font-weight:900!important;letter-spacing:-.02em!important;font-variant-numeric:tabular-nums!important;}
+  .rst-days-admin .rd-stats.empty{opacity:.62!important;background:#f3efe7!important;}
+  .rst-days-admin .rd-stats.empty b{background:#c8c1b4!important;color:#fff!important;}
+  .rst-days-admin .rst-day.sel .rd-stats{background:rgba(255,255,255,.22)!important;border-color:rgba(255,255,255,.18)!important;box-shadow:none!important;}
+  .rst-days-admin .rst-day.sel .rd-stats b{background:rgba(255,255,255,.92)!important;color:#2d6b3e!important;}
+  .rst-days-admin .rst-day.sel .rd-stats em{color:#fff!important;}
+  .rst-day-head span{white-space:nowrap!important;}
+}
+@media(max-width:430px){
+  .rst-days-admin{gap:5px!important}
+  .rst-days-admin .rst-day{min-height:64px!important;border-radius:14px!important;padding:6px 1px 6px!important}
+  .rst-days-admin .rd-dow{font-size:8.6px!important}
+  .rst-days-admin .rd-num{font-size:16px!important}
+  .rst-days-admin .rd-stats{min-width:34px!important;height:16px!important;padding:0 4px!important;gap:2px!important}
+  .rst-days-admin .rd-stats b{min-width:11px!important;height:11px!important;font-size:7.5px!important;line-height:11px!important}
+  .rst-days-admin .rd-stats em{font-size:8px!important}
+}
+@media(min-width:1024px){.rst-days-admin .rst-day{min-height:64px!important}}
+</style>
+<!-- WW_V208_ADMIN_DAILY_HOURS_END -->
+
+
+
+<style id="ww-v211-important-tight-replies-static">
+.important-updates-panel .upd-body{padding-top:0!important;padding-bottom:7px!important}.important-updates-panel .upd-body p{margin:0 0 2px!important;line-height:1.32!important}.important-updates-panel .upd-react{margin-top:1px!important;margin-bottom:0!important;min-height:18px!important;height:auto!important}.important-updates-panel .upd-react-chips{min-height:18px!important;gap:3px!important}.important-updates-panel .upd-react-add{width:20px!important;height:20px!important;min-width:20px!important;opacity:.72!important}.important-updates-panel .upd-react-add svg{width:12px!important;height:12px!important}.important-updates-panel .upd-comments{margin-top:1px!important;padding-top:4px!important;border-top:1px solid rgba(20,31,23,.06)!important}.important-updates-panel .upd-comments-head{margin:0 0 4px!important;font-size:10px!important;line-height:1!important}.important-updates-panel .upd-comment-list{gap:4px!important}.important-updates-panel .upd-comment{gap:7px!important;margin:0!important;align-items:flex-start!important}.important-updates-panel .ucm-av .avatar{width:28px!important;height:28px!important;font-size:11px!important}.important-updates-panel .ucm-top{gap:5px!important;line-height:1.05!important}.important-updates-panel .ucm-name{font-size:12.4px!important;line-height:1.05!important}.important-updates-panel .ucm-time{font-size:10px!important;line-height:1.05!important}.important-updates-panel .ucm-text{margin-top:1px!important;font-size:12.8px!important;line-height:1.18!important}.important-updates-panel .ucm-reply-btn{margin-top:1px!important;padding:0!important;font-size:11.5px!important;line-height:1.05!important}.important-updates-panel .ucm-replies{margin-top:3px!important;gap:2px!important}.important-updates-panel .upd-comment-add{margin-top:5px!important;gap:7px!important}@media(max-width:720px){.important-updates-panel .upd-body{padding-bottom:6px!important}.important-updates-panel .upd-comments{padding-top:3px!important}.important-updates-panel .upd-comment-add{margin-top:4px!important}}
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>Westwondersandco</h1>
+    <p>That page wasn't found. Let's get you back to the hub.</p>
+    <a href="/">Go to the app</a>
+  </div>
+  <script>location.replace('/');</script>
+
+
+
+
+<style id="ww-kate-pwa-home-screen-gap-real-final-v2">
+/* FINAL STRUCTURAL FIX FOR iPHONE HOME SCREEN BOTTOM STRIP */
+@media (max-width:1023px){
+  :root{
+    --safe-b:0px!important;
+    --ww-kate-dock-h:78px!important;
+    --ww-kate-dock-inner-h:66px!important;
+    --ww-kate-dock-bg:#102719!important;
+    --ww-kate-page-bg:#e6f0e3!important;
+  }
+  html,body{
+    margin:0!important;padding:0!important;width:100%!important;min-width:100%!important;min-height:100%!important;
+    background:var(--ww-kate-dock-bg)!important;background-color:var(--ww-kate-dock-bg)!important;overflow-x:hidden!important;
+  }
+  #app,.shell,.main{
+    background:var(--ww-kate-dock-bg)!important;background-color:var(--ww-kate-dock-bg)!important;min-height:100dvh!important;overflow-x:hidden!important;
+  }
+  .content,main.content{
+    background:var(--ww-kate-page-bg)!important;background-color:var(--ww-kate-page-bg)!important;
+    padding-bottom:calc(var(--ww-kate-dock-h) + 12px)!important;margin-bottom:0!important;overflow-x:hidden!important;
+  }
+  .content > .page,main.content > .page{padding-bottom:0!important;margin-bottom:0!important;}
+
+  body::before,#app::before,#app::after,.shell::before,.shell::after,.main::before,.main::after,
+  .content::before,.content::after,main.content::before,main.content::after,.page::before,.page::after,
+  .dock::before,.dock::after,.dock-inner::before,.dock-inner::after,.mobile-nav::before,.mobile-nav::after{
+    display:none!important;content:none!important;height:0!important;min-height:0!important;max-height:0!important;opacity:0!important;background:transparent!important;pointer-events:none!important;
+  }
+
+  /* Dark shield covers the iPhone Home Screen home-indicator/safe-area strip. */
+  body::after{
+    content:""!important;display:block!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;
+    height:calc(var(--ww-kate-dock-h) + 84px)!important;background:var(--ww-kate-dock-bg)!important;background-color:var(--ww-kate-dock-bg)!important;
+    z-index:2147482000!important;pointer-events:none!important;opacity:1!important;transform:translateZ(0)!important;
+  }
+
+  .mobile-nav{display:none!important;visibility:hidden!important;height:0!important;min-height:0!important;max-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important;}
+
+  .dock{
+    all:unset!important;box-sizing:border-box!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;
+    height:var(--ww-kate-dock-h)!important;min-height:var(--ww-kate-dock-h)!important;max-height:var(--ww-kate-dock-h)!important;
+    padding:6px 6px 6px!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;
+    background:linear-gradient(180deg,#1d3a26 0%,var(--ww-kate-dock-bg) 100%)!important;background-color:var(--ww-kate-dock-bg)!important;
+    border-radius:0!important;border-top:1px solid rgba(255,255,255,.10)!important;box-shadow:0 -8px 20px rgba(7,24,13,.22)!important;overflow:hidden!important;
+    z-index:2147483000!important;transform:translate3d(0,0,0)!important;transition:none!important;-webkit-transform:translate3d(0,0,0)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;contain:layout paint!important;
+  }
+  .dock-inner{all:unset!important;box-sizing:border-box!important;width:100%!important;max-width:560px!important;height:var(--ww-kate-dock-inner-h)!important;min-height:var(--ww-kate-dock-inner-h)!important;max-height:var(--ww-kate-dock-inner-h)!important;margin:0 auto!important;padding:0!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;background:transparent!important;overflow:hidden!important;}
+  .dock-tab{all:unset!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;height:var(--ww-kate-dock-inner-h)!important;min-height:var(--ww-kate-dock-inner-h)!important;max-height:var(--ww-kate-dock-inner-h)!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;padding:0!important;margin:0!important;color:rgba(226,238,220,.78)!important;background:transparent!important;border:0!important;box-shadow:none!important;transform:none!important;transition:none!important;overflow:hidden!important;position:relative!important;-webkit-tap-highlight-color:transparent!important;cursor:pointer!important;}
+  .dock-tab:active,.dock-tab.is-active{transform:none!important;opacity:1!important;background:transparent!important;}
+  .dock-ico{all:unset!important;box-sizing:border-box!important;width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;max-width:40px!important;max-height:40px!important;flex:0 0 40px!important;display:grid!important;place-items:center!important;border-radius:50%!important;background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.15)!important;color:rgba(226,238,220,.82)!important;margin:0!important;padding:0!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)!important;}
+  .dock-ico svg,.dock-tab svg{width:19px!important;height:19px!important;min-width:19px!important;min-height:19px!important;max-width:19px!important;max-height:19px!important;display:block!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;fill:none!important;stroke:currentColor!important;stroke-width:2.1!important;}
+  .dock-lbl{all:unset!important;box-sizing:border-box!important;display:block!important;max-width:100%!important;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif!important;font-size:9.4px!important;line-height:1.08!important;font-weight:800!important;letter-spacing:.003em!important;text-align:center!important;color:rgba(226,238,220,.78)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;}
+  .dock-tab.is-active .dock-ico{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;max-width:44px!important;max-height:44px!important;flex-basis:44px!important;background:linear-gradient(180deg,#fffdf4 0%,#eef5e8 100%)!important;color:#1f3f28!important;border-color:rgba(255,255,255,.72)!important;box-shadow:0 7px 16px rgba(6,20,10,.36),inset 0 1px 0 rgba(255,255,255,.95)!important;}
+  .dock-tab.is-active .dock-lbl{color:#ffffff!important;font-weight:900!important;}
+  .dock-tab.is-active::after{display:none!important;content:none!important;}
+  .toast{bottom:calc(var(--ww-kate-dock-h) + 10px)!important;}
+  body.chat-thread-open .dock,body.modal-open .dock{display:none!important;}
+  body.chat-thread-open::after,body.modal-open::after{display:none!important;}
+}
+@media (max-width:380px){
+  :root{--ww-kate-dock-h:76px!important;--ww-kate-dock-inner-h:64px!important;}
+  .dock{padding:5px 5px 5px!important;}
+  .dock-ico{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;max-width:38px!important;max-height:38px!important;flex-basis:38px!important;}
+  .dock-tab.is-active .dock-ico{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;max-width:42px!important;max-height:42px!important;flex-basis:42px!important;}
+  .dock-lbl{font-size:8.8px!important;}
+}
+</style>
+
+
+
+<!-- WW_V106_DESKTOP_SPEED_NO_TRANSITIONS_START -->
+<style id="ww-v106-desktop-speed-no-transitions">
+/* V106 desktop performance patch: desktop only. Removes page fades/transitions
+   and disables heavy animated paint effects so page changes feel instant. */
+@media (min-width:1024px){
+  html,body,#app,.shell,.main,.content{scroll-behavior:auto!important;}
+  *,*::before,*::after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+  .page,.page *,
+  .modal-overlay,.modal,.modal *{
+    animation:none!important;
+    transition:none!important;
+  }
+  .page{opacity:1!important;transform:none!important;will-change:auto!important;}
+  .modal-overlay{opacity:1!important;}
+  .modal{transform:none!important;}
+  .icon-btn,.topbar,.modal,.card,.panel,.shift-card,.wk-col,.wk-shift,.emp-shift,
+  .dashboard-card,.update-card,.chat-card,.thread-row,.directory-card,.client-card,
+  .mobile-nav,.dock,.toast,.btn,.nav-item{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    filter:none!important;
+    will-change:auto!important;
+  }
+  .ring-fg{transition:none!important;}
+  .live-dot,.presence-dot,.dot,.pulse{animation:none!important;}
+}
+</style>
+<!-- WW_V106_DESKTOP_SPEED_NO_TRANSITIONS_END -->
+
+
+
+<!-- WW_V109_SMOOTH_STABILITY_START -->
+<style id="ww-v109-smooth-stability">
+/* V109 — stability/performance pass.
+   Keeps existing design/data. Staff names stay visible on MOBILE roster cards only. */
+html,body,#app,.shell,.main,.content{scroll-behavior:auto!important;overscroll-behavior-y:contain!important;}
+.page{animation:none!important;opacity:1!important;transform:none!important;will-change:auto!important;}
+.page,.modal,.modal-overlay,.sheet,.drawer,.toast,.rcard,.rgc,.cv-row,.nav-item,.mobile-nav,.fresh-mobile-menu,.btn,.icon-btn{transition:none!important;animation:none!important;}
+.live-dot,.presence-dot,.dot,.pulse,.ring-fg{animation:none!important;transition:none!important;}
+@media (min-width:1024px){
+  /* Employee names on roster cards are for mobile only. Keep desktop grid clean. */
+  .rc-meta .rc-staff-line,
+  .home-roster-list .rc-meta .rc-staff-line,
+  .rgc-staff{display:none!important;visibility:hidden!important;height:0!important;max-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;}
+  .rc-meta{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  .content,.page,.roster-page,.week-grid,.wk-grid,.dashboard-grid{contain:layout paint!important;}
+  .modal,.panel,.card,.shift-card,.wk-shift,.rgc,.rcard,.cv-row{will-change:auto!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+}
+@media (max-width:1023px){
+  /* Mobile keeps assigned staff names on shift cards. */
+  .rgc-staff{display:flex!important;align-items:center!important;}
+  .rc-meta .rc-staff-line{display:block!important;}
+  .content{-webkit-overflow-scrolling:touch!important;}
+}
+</style>
+<!-- WW_V109_SMOOTH_STABILITY_END -->
+
+
+
+<!-- WW_V109_CHAT_STABILITY_STATIC_START -->
+<style id="ww-v109-chat-stability-static">
+@media (min-width:1024px){
+  .rc-meta .rc-staff-line,.home-roster-list .rc-meta .rc-staff-line,.rgc-staff{display:none!important;visibility:hidden!important;height:0!important;max-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important}
+}
+@media (max-width:1023px){
+  .rgc-staff{display:flex!important;align-items:center!important;gap:6px!important;margin-top:6px!important;padding:5px 8px!important;border-radius:999px!important;background:rgba(255,250,236,.92)!important;color:#183b23!important;border:1px solid rgba(24,59,35,.16)!important;box-shadow:0 3px 9px rgba(12,32,18,.16)!important;font-size:11.5px!important;font-weight:950!important;line-height:1!important;letter-spacing:-.01em!important;max-width:100%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .rgc-staff svg{width:14px!important;height:14px!important;stroke-width:2.8!important;color:#24582f!important;flex:0 0 14px!important}
+  .rgc-staff span{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+  .rc-meta .rc-staff-line{display:block!important;margin-top:5px!important;padding:5px 8px!important;border-radius:999px!important;background:rgba(255,250,236,.94)!important;color:#173b23!important;border:1px solid rgba(24,59,35,.18)!important;box-shadow:0 3px 8px rgba(12,32,18,.14)!important;font-size:11.5px!important;font-weight:950!important;line-height:1.15!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .cv-row .cv-readtoggle,.cv-row .cv-mini-action{display:none!important;visibility:hidden!important;width:0!important;height:0!important;margin:0!important;padding:0!important;pointer-events:none!important}
+  .chat-scroll{contain:none!important;will-change:auto!important}
+}
+</style>
+<!-- WW_V109_CHAT_STABILITY_STATIC_END -->
+
+</body>
+</html>
+<!-- WW_V198_STAFFBAR_SKINNY_FIRSTNAMES_START -->
+<style id="ww-v198-staffbar-skinny-firstnames">
+/* WW_V198_STAFFBAR_SKINNY_FIRSTNAMES_START
+   Requested only: make the existing employee-name STAFF bar skinny, keep the same colours/design, keep first names only, and keep the names centered vertically. */
+@media (max-width:1023px){
+  .roster-mobile .rcard .rc-meta,
+  .home-roster-list .rcard .rc-meta,
+  .rcard.is-emp .rc-meta{
+    overflow:visible!important;
+    text-overflow:clip!important;
+    white-space:normal!important;
+    line-height:1.15!important;
+  }
+  .roster-mobile .rcard .rc-meta.rc-meta-full,
+  .home-roster-list .rcard .rc-meta.rc-meta-full,
+  .rcard.is-emp .rc-meta.rc-meta-full{
+    width:auto!important;
+    max-width:100%!important;
+    flex:0 0 100%!important;
+    align-self:stretch!important;
+    display:block!important;
+  }
+  .roster-mobile .rcard .rc-meta .rc-staff-line,
+  .home-roster-list .rcard .rc-meta .rc-staff-line,
+  .rcard.is-emp .rc-meta .rc-staff-line{
+    display:inline-flex!important;
+    grid-template-columns:unset!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:6px!important;
+    margin-top:4px!important;
+    padding:2px 8px 2px 3px!important;
+    min-height:22px!important;
+    height:22px!important;
+    border-radius:999px!important;
+    background:#173b23!important;
+    background:color-mix(in srgb,var(--deep,#163f24) 88%,#000 12%)!important;
+    color:#fff!important;
+    border:1px solid rgba(255,255,255,.20)!important;
+    box-shadow:0 4px 12px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.16)!important;
+    width:fit-content!important;
+    min-width:0!important;
+    max-width:100%!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    box-sizing:border-box!important;
+  }
+  .roster-mobile .rcard .rc-meta .rc-staff-line .rc-staff-kicker,
+  .home-roster-list .rcard .rc-meta .rc-staff-line .rc-staff-kicker,
+  .rcard.is-emp .rc-meta .rc-staff-line .rc-staff-kicker{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:17px!important;
+    min-height:17px!important;
+    padding:0 8px!important;
+    border-radius:999px!important;
+    background:#7fb56a!important;
+    color:#10240f!important;
+    font-size:8.7px!important;
+    font-weight:900!important;
+    letter-spacing:.09em!important;
+    line-height:17px!important;
+    flex:0 0 auto!important;
+    text-shadow:none!important;
+    box-shadow:0 1px 2px rgba(0,0,0,.2)!important;
+    box-sizing:border-box!important;
+  }
+  .roster-mobile .rcard .rc-meta .rc-staff-line .rc-staff-names,
+  .home-roster-list .rcard .rc-meta .rc-staff-line .rc-staff-names,
+  .rcard.is-emp .rc-meta .rc-staff-line .rc-staff-names{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    text-align:center!important;
+    width:auto!important;
+    min-width:0!important;
+    max-width:calc(100vw - 160px)!important;
+    height:17px!important;
+    min-height:17px!important;
+    padding:0!important;
+    background:transparent!important;
+    border:0!important;
+    box-shadow:none!important;
+    border-radius:0!important;
+    color:#ffffff!important;
+    font-size:12.5px!important;
+    font-weight:900!important;
+    line-height:17px!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    word-break:normal!important;
+    flex:0 1 auto!important;
+    box-sizing:border-box!important;
+  }
+  .rgc-staff{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:6px!important;
+    margin-top:4px!important;
+    padding:2px 8px 2px 3px!important;
+    min-height:22px!important;
+    height:22px!important;
+    width:fit-content!important;
+    max-width:100%!important;
+    border-radius:999px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  .rgc-staff-kicker{height:17px!important;min-height:17px!important;padding:0 8px!important;font-size:8.7px!important;line-height:17px!important;box-sizing:border-box!important;}
+  .rgc-staff-names{display:inline-flex!important;align-items:center!important;height:17px!important;line-height:17px!important;font-size:12.5px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;}
+}
+/* WW_V198_STAFFBAR_SKINNY_FIRSTNAMES_END */
+</style>
+<!-- WW_V198_STAFFBAR_SKINNY_FIRSTNAMES_END -->
+
+
+<!-- WW_V199_ROSTER_ALIGN_SPEED_LOGIN_FINAL_START -->
+<style id="ww-v199-roster-align-speed-login-final">
+/* V199 final override — only align the roster week stats/date and remove laggy motion. */
+@media (max-width:1023px){
+  .rst-hero.admin,.rst-hero.staff{contain:layout paint!important;transform:translateZ(0)!important;backface-visibility:hidden!important;}
+  .rst-hero-top{display:grid!important;grid-template-columns:38px minmax(0,1fr) 38px!important;align-items:center!important;gap:8px!important;min-height:38px!important;}
+  .rst-hero-label{min-width:0!important;width:100%!important;max-width:100%!important;text-align:center!important;overflow:hidden!important;padding:0 2px!important;}
+  .rst-eyebrow{display:block!important;line-height:1!important;margin:0 0 3px!important;}
+  .rst-hero-label strong{display:block!important;max-width:100%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;text-align:center!important;line-height:1.04!important;font-size:clamp(16px,4.7vw,19px)!important;}
+  .rst-nav{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;justify-self:center!important;align-self:center!important;}
+  .rst-hero-foot,
+  .rst-hero.admin .rst-hero-foot,
+  .rst-hero.staff .rst-hero-foot{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:stretch!important;gap:8px!important;margin-top:9px!important;width:100%!important;max-width:100%!important;}
+  .rst-hero.admin .rst-hs,.rst-hero.staff .rst-hs{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;width:100%!important;min-width:0!important;max-width:100%!important;height:42px!important;min-height:42px!important;padding:0 5px!important;margin:0!important;border-radius:13px!important;border:1px solid rgba(255,255,255,.11)!important;background:rgba(255,255,255,.075)!important;box-sizing:border-box!important;position:relative!important;}
+  .rst-hero.admin .rst-hs:first-of-type,.rst-hero.staff .rst-hs:first-of-type,.rst-hero.admin .rst-hs:nth-of-type(2),.rst-hero.staff .rst-hs:nth-of-type(2){border-radius:13px!important;border:1px solid rgba(255,255,255,.11)!important;}
+  .rst-hero.admin .rst-hs:nth-of-type(2)::before,.rst-hero.staff .rst-hs:nth-of-type(2)::before{content:none!important;display:none!important;}
+  .rst-hs strong{display:block!important;width:100%!important;text-align:center!important;line-height:1!important;font-size:18px!important;margin:0!important;font-variant-numeric:tabular-nums!important;}
+  .rst-hs em{display:block!important;width:100%!important;text-align:center!important;line-height:1!important;margin:2px 0 0!important;font-size:8px!important;letter-spacing:.07em!important;}
+  .rst-hero.admin .rst-hero-add,.rst-hero.staff .rst-hero-add{grid-column:1 / -1!important;width:100%!important;min-width:0!important;max-width:100%!important;height:40px!important;min-height:40px!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;}
+}
+@media (max-width:390px){
+  .rst-hero-top{grid-template-columns:34px minmax(0,1fr) 34px!important;gap:7px!important;}
+  .rst-nav{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;}
+  .rst-hero-label strong{font-size:clamp(15px,4.45vw,17px)!important;}
+  .rst-hero-foot,.rst-hero.admin .rst-hero-foot,.rst-hero.staff .rst-hero-foot{gap:7px!important;}
+  .rst-hero.admin .rst-hs,.rst-hero.staff .rst-hs{height:40px!important;min-height:40px!important;}
+  .rst-hs strong{font-size:16.5px!important;}
+  .rst-hs em{font-size:7.4px!important;}
+  .rst-hero.admin .rst-hero-add,.rst-hero.staff .rst-hero-add{height:39px!important;min-height:39px!important;}
+}
+.login-root,.login-stage,.login-card,.login-root::before,.login-root::after,.login-stage::before,.login-stage::after{animation:none!important;transition:none!important;will-change:auto!important;backface-visibility:hidden!important;-webkit-backface-visibility:hidden!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;}
+.login-root{min-height:100dvh!important;overflow:hidden!important;contain:layout paint!important;transform:translateZ(0)!important;}
+.login-stage,.login-card{transform:none!important;}
+@media (max-width:1023px){
+  html,body,#app{scroll-behavior:auto!important;overscroll-behavior:none!important;}
+  .page,.content,.card,.panel,.rcard,.rgc,.modal,.modal-card,.mobile-nav,.topbar,.login-card,.login-stage,.btn,.icon-btn,button,[data-action]{animation:none!important;transition:none!important;will-change:auto!important;}
+  .content,.modal-body,.chat-scroll,.cv-threads{-webkit-overflow-scrolling:touch!important;scroll-behavior:auto!important;overscroll-behavior:contain!important;}
+}
+</style>
+<!-- WW_V199_ROSTER_ALIGN_SPEED_LOGIN_FINAL_END -->

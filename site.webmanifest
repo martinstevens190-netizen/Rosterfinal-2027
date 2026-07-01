@@ -1,0 +1,37 @@
+{
+  "name": "EarthRoster",
+  "short_name": "EarthRoster",
+  "description": "EarthRoster \u2014 Westwondersandco workforce roster, bookings, reminders, time clock, timesheets and team messages.",
+  "start_url": "/?v=v218-general-push-clean",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e1b13",
+  "theme_color": "#16271a",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png?v=v218-general-push-clean",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png?v=v218-general-push-clean",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable-192x192.png?v=v218-general-push-clean",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/maskable-512x512.png?v=v218-general-push-clean",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

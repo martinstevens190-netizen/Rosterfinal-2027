@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><script>
+const STORE_KEY='westwonders_workforce_power_state_v9_fresh';
+const state={
+ version:20, activeTab:'bookings', sessionUserId:'u1', rosterAnchor:'2026-06-29', rosterDate:'2026-07-02', timesheetAnchor:'2026-06-29', timesheetDate:'2026-07-02', adminTimesheetAnchor:'2026-06-29', adminTimesheetDate:'2026-07-02', activeThreadId:'team-all', clockSubTab:'clock', shiftResponses:{}, clockState:{}, bookingFilter:'active', bookingReminderLog:{},
+ company:{name:'Westwondersandco',tagline:'Eco-friendly cleaning, professionally managed'},
+ users:[
+  {id:'u1',role:'admin',status:'active',name:'Sophie Westley',title:'Founder / Admin',email:'admin@earthroster.app',password:'admin123',phone:'',photo:''},
+  {id:'u2',role:'employee',status:'active',name:'Chelsea Moore',title:'Cleaner',email:'chelsea@example.com',phone:'',password:'staff123'},
+  {id:'u3',role:'employee',status:'active',name:'Rose Allart',title:'Cleaner',email:'rose@example.com',phone:'',password:'staff123'}
+ ],
+ clients:[{id:'c1',name:'Jessica La Rocco',address:'Some address, Suburb VIC'}],
+ shifts:[], clockRecords:[], documents:[], availability:{}, weeklyAvail:{}, updates:[], deletedUpdates:{}, alerts:[],
+ bookingReminders:[
+  {id:'br1',company:'Ray White Cranbourne',contactName:'Sarah',source:'ChatGPT paste',email:'sarah@raywhite.example',phone:'0400 000 000',address:'12 Sample Street, Cranbourne VIC',cleanDate:'2026-07-02',cleanTime:'09:30',reminderDays:'2,1',status:'pending',notes:'Service: End of lease clean\n\nKeys in lockbox. Must be completed before tenant handover.',createdAt:'2026-06-30T08:00:00.000Z',updatedAt:'2026-06-30T08:00:00.000Z'},
+  {id:'br2',company:'Barry Plant Berwick',contactName:'Michael',source:'Real estate',email:'',phone:'',address:'45 Garden Avenue, Berwick VIC',cleanDate:'2026-07-03',cleanTime:'10:00',reminderDays:'2,1',status:'pending',notes:'Vacate clean. Confirm keys with agent.',createdAt:'2026-06-30T09:00:00.000Z',updatedAt:'2026-06-30T09:00:00.000Z'},
+  {id:'br3',company:'Harcourts Dandenong',contactName:'Alicia',source:'Email',email:'',phone:'',address:'8 Collins Road, Dandenong VIC',cleanDate:'2026-07-04',cleanTime:'08:30',reminderDays:'1',status:'rostered',notes:'Added to roster already.',createdAt:'2026-06-30T10:00:00.000Z',updatedAt:'2026-06-30T10:00:00.000Z'}
+ ],
+ threads:[{id:'team-all',type:'team',name:'Whole Team',memberIds:['u1','u2','u3'],messages:[]}]
+};
+localStorage.setItem('ww_fresh_reset_v9_done','1');
+localStorage.setItem(STORE_KEY, JSON.stringify(state));
+location.replace('index.html');
+</script>

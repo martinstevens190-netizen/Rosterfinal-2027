@@ -1,0 +1,38 @@
+<!doctype html><meta charset="utf-8"><script>
+const STORE_KEY='westwonders_workforce_power_state_v9_fresh';
+const state={
+ version:17, activeTab:'roster', sessionUserId:'u8', rosterAnchor:'2026-06-29', rosterDate:'2026-07-02', timesheetAnchor:'2026-06-29', timesheetDate:'2026-07-02', adminTimesheetAnchor:'2026-06-29', adminTimesheetDate:'2026-07-02', activeThreadId:'team-all', clockSubTab:'clock', clockState:{}, shiftResponses:{'s1:u8':'declined','s2:u8':'accepted'},
+ company:{name:'Westwondersandco',tagline:'Eco-friendly cleaning, professionally managed'},
+ users:[
+  {id:'u1',role:'admin',status:'active',name:'Sophie Westley',title:'Founder / Admin',email:'admin@earthroster.app',password:'admin123',phone:'',photo:''},
+  {id:'u2',role:'employee',status:'active',name:'Chelsea Moore',title:'Cleaner',email:'chelsea@example.com',phone:'',password:'staff123'},
+  {id:'u3',role:'employee',status:'active',name:'Courtney Smith',title:'Cleaner',email:'courtney@example.com',phone:'',password:'staff123'},
+  {id:'u4',role:'employee',status:'active',name:'Tara Brown',title:'Cleaner',email:'tara@example.com',phone:'',password:'staff123'},
+  {id:'u5',role:'employee',status:'active',name:'Gabriella Stone',title:'Cleaner',email:'gabriella@example.com',phone:'',password:'staff123'},
+  {id:'u6',role:'employee',status:'active',name:'Natalie West',title:'Cleaner',email:'natalie@example.com',phone:'',password:'staff123'},
+  {id:'u8',role:'employee',status:'active',name:'Rose Allart',title:'Cleaner',email:'rose@example.com',phone:'',password:'staff123'}
+ ],
+ clients:[
+  {id:'c1',name:'Chloe Hodder',address:'Some address, Suburb VIC'},
+  {id:'c2',name:'Brianna Koch',address:'Some address, Suburb VIC'},
+  {id:'c3',name:'Amanda Edit...',address:'Some address, Suburb VIC'},
+  {id:'c4',name:'Rebekah Stone',address:'Some address, Suburb VIC'},
+  {id:'c5',name:'Kathryn Cross',address:'Some address, Suburb VIC'}
+ ],
+ shifts:[
+  {id:'s0',clientId:'c5',date:'2026-06-29',start:'09:30',end:'11:30',status:'Published',colorKey:'sage',employeeIds:['u8'],notes:''},
+  {id:'s00',clientId:'c3',date:'2026-06-30',start:'09:30',end:'10:30',status:'Published',colorKey:'rose',employeeIds:['u8'],notes:''},
+  {id:'s000',clientId:'c2',date:'2026-07-01',start:'10:15',end:'11:15',status:'Published',colorKey:'teal',employeeIds:['u8'],notes:''},
+  {id:'s1',clientId:'c1',date:'2026-07-02',start:'09:00',end:'09:50',status:'Published',colorKey:'charcoal',employeeIds:['u3','u8','u4'],notes:''},
+  {id:'s2',clientId:'c2',date:'2026-07-02',start:'10:15',end:'11:15',status:'Published',colorKey:'teal',employeeIds:['u2','u3','u8','u4'],notes:''},
+  {id:'s3',clientId:'c3',date:'2026-07-02',start:'11:30',end:'12:30',status:'Published',colorKey:'sage',employeeIds:['u2','u8'],notes:''},
+  {id:'s4',clientId:'c4',date:'2026-07-02',start:'12:45',end:'13:45',status:'Published',colorKey:'indigo',employeeIds:['u2','u8'],notes:''},
+  {id:'s5',clientId:'c5',date:'2026-07-03',start:'09:30',end:'11:30',status:'Published',colorKey:'sage',employeeIds:['u8'],notes:''}
+ ],
+ clockRecords:[], documents:[], availability:{}, weeklyAvail:{}, updates:[], deletedUpdates:{}, bookingReminders:[], alerts:[],
+ threads:[{id:'team-all',type:'team',name:'Whole Team',memberIds:['u1','u2','u3','u4','u5','u6','u8'],messages:[]}]
+};
+localStorage.setItem('ww_fresh_reset_v9_done','1');
+localStorage.setItem(STORE_KEY, JSON.stringify(state));
+location.replace('index.html');
+</script>

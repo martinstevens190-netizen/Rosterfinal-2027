@@ -1,0 +1,50 @@
+<!doctype html><meta charset="utf-8"><script>
+const STORE_KEY='westwonders_workforce_power_state_v9_fresh';
+const state={
+ version:17, activeTab:'home', sessionUserId:'u1', rosterAnchor:'2026-06-29', rosterDate:'2026-07-02', timesheetAnchor:'2026-06-29', timesheetDate:'2026-07-02', adminTimesheetAnchor:'2026-06-29', adminTimesheetDate:'2026-07-02', activeThreadId:'team-all', clockSubTab:'clock', shiftResponses:{}, clockState:{}, openUpdates:{up1:true},
+ company:{name:'Westwondersandco',tagline:'Eco-friendly cleaning, professionally managed'},
+ users:[
+  {id:'u1',role:'admin',status:'active',name:'Sophie Westley',title:'Founder / Admin',email:'admin@earthroster.app',password:'admin123',phone:'',photo:''},
+  {id:'u2',role:'employee',status:'active',name:'Chelsea Moore',title:'Cleaner',email:'chelsea@example.com',phone:'',password:'staff123'},
+  {id:'u3',role:'employee',status:'active',name:'Rushea Khan',title:'Cleaner',email:'rushea@example.com',phone:'',password:'staff123'},
+  {id:'u4',role:'employee',status:'active',name:'Courtney Smith',title:'Cleaner',email:'courtney@example.com',phone:'',password:'staff123'},
+  {id:'u5',role:'employee',status:'active',name:'Tara Brown',title:'Cleaner',email:'tara@example.com',phone:'',password:'staff123'},
+  {id:'u6',role:'employee',status:'active',name:'Gabriella Stone',title:'Cleaner',email:'gabriella@example.com',phone:'',password:'staff123'},
+  {id:'u7',role:'employee',status:'active',name:'Natalie West',title:'Cleaner',email:'natalie@example.com',phone:'',password:'staff123'},
+  {id:'u8',role:'employee',status:'active',name:'Rose Allart',title:'Cleaner',email:'rose@example.com',phone:'',password:'staff123'}
+ ],
+ clients:[
+  {id:'c1',name:'Jessica La Rocco',address:'Some address, Suburb VIC'},
+  {id:'c2',name:'Mel Patterson Lakes',address:'Some address, Suburb VIC'},
+  {id:'c3',name:'Lynne Heard',address:'Some address, Suburb VIC'},
+  {id:'c4',name:'Kathryn Cross',address:'Some address, Suburb VIC'},
+  {id:'c5',name:'Peter Black',address:'Some address, Suburb VIC'},
+  {id:'c6',name:'Linh Nguyen',address:'Some address, Suburb VIC'},
+  {id:'c7',name:'Tess Farrell',address:'Some address, Suburb VIC'}
+ ],
+ shifts:[
+  {id:'s1',clientId:'c2',date:'2026-06-29',start:'09:30',end:'11:00',status:'Published',colorKey:'plum',employeeIds:['u4','u5'],notes:''},
+  {id:'s2',clientId:'c4',date:'2026-06-29',start:'09:30',end:'11:30',status:'Published',colorKey:'sage',employeeIds:['u8'],notes:''},
+  {id:'s3',clientId:'c1',date:'2026-06-30',start:'09:30',end:'11:00',status:'Published',colorKey:'grape',employeeIds:['u2','u3'],notes:''},
+  {id:'s4',clientId:'c5',date:'2026-06-30',start:'10:45',end:'12:45',status:'Published',colorKey:'forest',employeeIds:['u6','u7'],notes:''},
+  {id:'s5',clientId:'c3',date:'2026-07-01',start:'09:30',end:'10:30',status:'Published',colorKey:'rose',employeeIds:['u6','u7'],notes:''},
+  {id:'s6',clientId:'c6',date:'2026-07-01',start:'11:15',end:'12:15',status:'Published',colorKey:'plum',employeeIds:['u2','u3'],notes:''},
+  {id:'s7',clientId:'c1',date:'2026-07-01',start:'13:00',end:'15:00',status:'Published',colorKey:'indigo',employeeIds:['u4'],notes:''},
+  {id:'s8',clientId:'c3',date:'2026-07-02',start:'09:30',end:'10:30',status:'Published',colorKey:'rose',employeeIds:['u6','u7'],notes:''},
+  {id:'s9',clientId:'c4',date:'2026-07-02',start:'09:30',end:'11:30',status:'Published',colorKey:'sage',employeeIds:['u8'],notes:''},
+  {id:'s10',clientId:'c5',date:'2026-07-02',start:'10:45',end:'12:45',status:'Published',colorKey:'forest',employeeIds:['u6','u7'],notes:''},
+  {id:'s11',clientId:'c6',date:'2026-07-02',start:'11:15',end:'12:15',status:'Published',colorKey:'plum',employeeIds:['u2','u3'],notes:''},
+  {id:'s12',clientId:'c7',date:'2026-07-02',start:'11:15',end:'12:15',status:'Published',colorKey:'plum',employeeIds:['u4'],notes:''},
+  {id:'s13',clientId:'c4',date:'2026-07-03',start:'09:00',end:'11:00',status:'Published',colorKey:'sage',employeeIds:['u8'],notes:''}
+ ],
+ clockRecords:[], documents:[], availability:{}, weeklyAvail:{}, updates:[
+  {id:'up1',title:'Job update: new real estate clean',body:'End of lease clean added from email. Please check the notes and roster before the deadline.',authorId:'u1',audience:'all',pinned:true,createdAt:'2026-06-30T07:30:00.000Z',reactions:{},comments:[{id:'cm1',authorId:'u1',text:'Ok',createdAt:new Date().toISOString(),replies:[]}]},
+  {id:'up2',title:'Keys and access reminder',body:'Remember to confirm lockbox details before attending any real estate job.',authorId:'u1',audience:'all',pinned:false,createdAt:'2026-06-30T06:15:00.000Z',reactions:{},comments:[]},
+  {id:'up3',title:'Eco supplies arrive Thursday',body:'New products arrive Thursday afternoon. Admin will update the team once packed.',authorId:'u1',audience:'all',pinned:false,createdAt:'2026-06-29T22:20:00.000Z',reactions:{},comments:[]}
+ ], deletedUpdates:{}, bookingReminders:[], alerts:[],
+ threads:[{id:'team-all',type:'team',name:'Whole Team',memberIds:['u1','u2','u3','u4','u5','u6','u7','u8'],messages:[]}]
+};
+localStorage.setItem('ww_fresh_reset_v9_done','1');
+localStorage.setItem(STORE_KEY, JSON.stringify(state));
+location.replace('index.html');
+</script>

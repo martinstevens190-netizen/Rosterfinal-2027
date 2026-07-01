@@ -1,0 +1,9 @@
+{
+  "name": "westwonders-workforce-hub",
+  "version": "200.0.0",
+  "private": true,
+  "dependencies": {
+    "@netlify/blobs": "latest",
+    "web-push": "latest"
+  }
+}
